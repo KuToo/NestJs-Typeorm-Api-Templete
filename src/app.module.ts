@@ -4,6 +4,10 @@ import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import * as Joi from 'joi';
 import { LoggerModule } from 'nestjs-pino';
 import { join } from 'path';
+import { UserModule } from './user/user.module';
+import { CommonService } from './common/common.service';
+import { CommonModule } from './common/common.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -60,8 +64,11 @@ import { join } from 'path';
         }
       },
     }),
+    UserModule,
+    CommonModule,
+    AuthModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [CommonService],
 })
 export class AppModule {}
